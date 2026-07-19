@@ -4,8 +4,8 @@
   "category": "Dinner",
   "description": "Viral Lazy Girl Lasagna, a one pot meal your family will actually eat",
   "image": "images/lazylasagne.png",
-  "prepTime": "10",
-  "cookTime": "25",
+  "prepTime": "10 mins",
+  "cookTime": "25 mins",
   "serves": "6",
   "difficulty": "Easy",
   "tags": [
