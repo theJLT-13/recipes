@@ -1,0 +1,46 @@
+{
+  "id": 2,
+  "title": "Mum's Vegetarian Lasagne",
+  "category": "Pasta",
+  "description": "Forever the family favourite.",
+  "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmD8ufX5Hu2_Qigh4fq1YREkJaBeW3HCEoMgvitTyMElpdkNP2fgGPQPw&s=10",
+  "prepTime": "45 mins",
+  "cookTime": "30 mins",
+  "serves": "8",
+  "difficulty": "Easy",
+  "tags": [
+    "Vegetarian",
+    "Pasta",
+    "Death Row"
+  ],
+  "ingredients": [
+	  "1 pack of fresh lasagne sheets or Barilla dried sheets",
+	  "1 800g tin chopped tomatoes",
+	  "1 jar passata",
+	  "3 large mushrooms",
+	  "2 medium zucchinis",
+	  "2 onions",
+	  "3 carrots",
+	  "3 yellow squash or 1 additional zucchini",
+	  "Lazy Garlic - as much as you desire",
+	  "3 celery sticks",
+	  "Other vegetables - what ever you want to add",
+	  "Chopped fresh herbs to taste. e.g. Basil & Parsley",
+	  "Salt & Pepper to taste",
+	  "Cheese sauce - see recipe",
+	  "Grated Cheese"
+  ],
+  "method": [
+	  "Heat the oven to 200°C.",
+	  "Grate, finely dice or process all veggies.",
+	  "Using a generous amount of olive oil, fry onions until fragrant then add mushrooms & garlic.",
+	  "Add the rest of the processed vegetables, chopped tomatoes, passata, and herbs. Season with salt and pepper.",
+	  "Cook for at least 30 min and leave to cool - the longer the better.",
+	  "Make cheese sauce if required.",
+	  "Layer vegetable mix, lasange sheets and cheese sauce in alternating layers finishing with cheese sauce.",
+	  "Top with grated cheese.",
+	  "Cover with foil and bake for approx. 30 minutes, removing the foil halfway through",
+	  "Let Lasagne set for 10-15 minutes prior to portioning and serving"
+  ],
+  "notes": "Serve with garlic bread or baked dinner rolls with salted butter."
+}
