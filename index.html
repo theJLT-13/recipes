@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A personal recipe collection website." />
+  <title>My Recipe Book</title>
+
+  <style>
+    :root {
+      --background: #f7f3ec;
+      --surface: #fffdf8;
+      --surface-alt: #eee7dc;
+      --text: #2d2925;
+      --muted: #756e66;
+      --accent: #a64b2a;
+      --accent-dark: #7d351d;
+      --border: #ded5c9;
+      --shadow: 0 16px 45px rgba(71, 50, 35, 0.10);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 10px;
+      --content-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(247, 243, 236, 0.94);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+    }
+
+    .header-inner,
+    .page-shell {
+      width: min(calc(100% - 32px), var(--content-width));
+      margin: 0 auto;
+    }
+
+    .header-inner {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 1.25rem;
+      box-shadow: 0 8px 20px rgba(166, 75, 42, 0.25);
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .header-nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .header-nav a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      padding: 72px 0 48px;
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 34px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-card {
+      border-radius: var(--radius-lg);
+    }
+
+    .hero-copy {
+      padding: clamp(34px, 6vw, 70px);
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,.28), transparent 34%),
+        linear-gradient(135deg, #b35935, #77321d);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.76rem;
+      font-weight: 800;
+      opacity: 0.82;
+    }
+
+    .hero h1 {
+      margin: 0;
+      max-width: 770px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.7rem, 7vw, 5.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+
+    .hero-copy p {
+      max-width: 620px;
+      margin: 22px 0 0;
+      font-size: 1.08rem;
+      opacity: 0.9;
+    }
+
+    .hero-card {
+      padding: 32px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h2 {
+      margin: 0 0 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2rem;
+      line-height: 1.1;
+    }
+
+    .hero-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .stat {
+      background: var(--surface-alt);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.7rem;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      color: var(--muted);
+      margin-top: 6px;
+      font-size: 0.9rem;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 220px;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .control {
+      min-height: 52px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--text);
+      padding: 0 20px;
+      outline: none;
+      box-shadow: 0 5px 16px rgba(71, 50, 35, 0.04);
+    }
+
+    .control:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(166, 75, 42, 0.11);
+    }
+
+    .section-heading {
+      margin: 12px 0 22px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: -0.04em;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      padding-bottom: 72px;
+    }
+
+    .recipe-card {
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 28px rgba(71, 50, 35, 0.07);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .recipe-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .recipe-image-wrap {
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: var(--surface-alt);
+    }
+
+    .recipe-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 260ms ease;
+    }
+
+    .recipe-card:hover .recipe-image {
+      transform: scale(1.04);
+    }
+
+    .recipe-card-body {
+      padding: 22px;
+    }
+
+    .recipe-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: var(--surface-alt);
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .recipe-card h3 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.65rem;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+    }
+
+    .recipe-card p {
+      margin: 12px 0 18px;
+      color: var(--muted);
+    }
+
+    .recipe-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .recipe-time {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .button {
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 17px;
+      font-weight: 800;
+      background: var(--accent);
+      color: white;
+      transition: background 150ms ease, transform 150ms ease;
+    }
+
+    .button:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    .button.secondary {
+      background: var(--surface-alt);
+      color: var(--text);
+    }
+
+    .empty-state {
+      display: none;
+      grid-column: 1 / -1;
+      padding: 64px 24px;
+      text-align: center;
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius-lg);
+      color: var(--muted);
+    }
+
+    .recipe-dialog {
+      width: min(940px, calc(100% - 28px));
+      max-height: calc(100vh - 32px);
+      padding: 0;
+      border: 0;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: 0 28px 90px rgba(37, 26, 18, 0.28);
+      overflow: auto;
+    }
+
+    .recipe-dialog::backdrop {
+      background: rgba(34, 26, 20, 0.62);
+      backdrop-filter: blur(5px);
+    }
+
+    .dialog-image {
+      width: 100%;
+      max-height: 390px;
+      object-fit: cover;
+    }
+
+    .dialog-body {
+      padding: clamp(24px, 5vw, 48px);
+    }
+
+    .dialog-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+      padding: 14px;
+      margin-bottom: -70px;
+    }
+
+    .icon-button {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 0;
+      background: rgba(255,255,255,0.92);
+      color: var(--text);
+      font-size: 1.3rem;
+      box-shadow: 0 8px 22px rgba(0,0,0,.12);
+    }
+
+    .dialog-body h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.3rem, 6vw, 4.3rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .dialog-intro {
+      margin: 18px 0 24px;
+      color: var(--muted);
+      font-size: 1.03rem;
+    }
+
+    .dialog-facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 24px 0 36px;
+    }
+
+    .dialog-fact {
+      padding: 15px;
+      border-radius: var(--radius-md);
+      background: var(--surface-alt);
+    }
+
+    .dialog-fact span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .dialog-fact strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 1rem;
+    }
+
+    .recipe-columns {
+      display: grid;
+      grid-template-columns: 0.78fr 1.22fr;
+      gap: 42px;
+    }
+
+    .recipe-columns h3 {
+      margin: 0 0 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.7rem;
+    }
+
+    .ingredient-list,
+    .method-list {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    .ingredient-list li,
+    .method-list li {
+      margin-bottom: 10px;
+      padding-left: 4px;
+    }
+
+    .method-list li {
+      margin-bottom: 16px;
+    }
+
+    .notes-box {
+      margin-top: 32px;
+      padding: 20px;
+      border-left: 4px solid var(--accent);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      background: var(--surface-alt);
+    }
+
+    .notes-box strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .dialog-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 34px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0 42px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .recipe-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .recipe-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .header-nav {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 34px;
+      }
+
+      .controls,
+      .recipe-grid,
+      .dialog-facts {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .recipe-dialog {
+        width: calc(100% - 16px);
+        max-height: calc(100vh - 16px);
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      body > *:not(dialog[open]),
+      .dialog-topbar,
+      .dialog-actions {
+        display: none !important;
+      }
+
+      .recipe-dialog[open] {
+        position: static;
+        width: 100%;
+        max-height: none;
+        box-shadow: none;
+        border-radius: 0;
+        overflow: visible;
+      }
+
+      .recipe-dialog::backdrop {
+        display: none;
+      }
+
+      .dialog-image {
+        max-height: 280px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#">
+        <span class="brand-mark">R</span>
+        <span>My Recipe Book</span>
+      </a>
+
+      <nav class="header-nav" aria-label="Main navigation">
+        <a href="#recipes">Recipes</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero" id="about">
+      <div class="hero-copy">
+        <p class="eyebrow">My personal kitchen collection</p>
+        <h1>Recipes worth making again.</h1>
+        <p>
+          A simple home for favourite meals, family recipes and the dishes
+          you never want to forget.
+        </p>
+      </div>
+
+      <aside class="hero-card">
+        <div>
+          <p class="eyebrow">Recipe book</p>
+          <h2>Everything in one place</h2>
+          <p>Search your collection, filter by category and print any recipe while cooking.</p>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <strong id="recipeCount">0</strong>
+            <span>Recipes</span>
+          </div>
+          <div class="stat">
+            <strong id="categoryCount">0</strong>
+            <span>Categories</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="recipes">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Browse the collection</p>
+          <h2>All recipes</h2>
+        </div>
+        <p id="resultCount"></p>
+      </div>
+
+      <div class="controls">
+        <input
+          class="control"
+          id="searchInput"
+          type="search"
+          placeholder="Search by recipe, ingredient or tag..."
+          aria-label="Search recipes"
+        />
+
+        <select class="control" id="categoryFilter" aria-label="Filter by category">
+          <option value="all">All categories</option>
+        </select>
+      </div>
+
+      <div class="recipe-grid" id="recipeGrid"></div>
+      <div class="empty-state" id="emptyState">
+        No recipes matched your search.
+      </div>
+    </section>
+  </main>
+
+  <dialog class="recipe-dialog" id="recipeDialog">
+    <div class="dialog-topbar">
+      <button class="icon-button" id="closeDialog" aria-label="Close recipe">×</button>
+    </div>
+
+    <img class="dialog-image" id="dialogImage" alt="" />
+
+    <div class="dialog-body">
+      <div class="recipe-meta" id="dialogTags"></div>
+      <h2 id="dialogTitle"></h2>
+      <p class="dialog-intro" id="dialogDescription"></p>
+
+      <div class="dialog-facts">
+        <div class="dialog-fact">
+          <span>Prep</span>
+          <strong id="dialogPrep"></strong>
+        </div>
+        <div class="dialog-fact">
+          <span>Cook</span>
+          <strong id="dialogCook"></strong>
+        </div>
+        <div class="dialog-fact">
+          <span>Serves</span>
+          <strong id="dialogServes"></strong>
+        </div>
+        <div class="dialog-fact">
+          <span>Difficulty</span>
+          <strong id="dialogDifficulty"></strong>
+        </div>
+      </div>
+
+      <div class="recipe-columns">
+        <section>
+          <h3>Ingredients</h3>
+          <ul class="ingredient-list" id="dialogIngredients"></ul>
+        </section>
+
+        <section>
+          <h3>Method</h3>
+          <ol class="method-list" id="dialogMethod"></ol>
+        </section>
+      </div>
+
+      <div class="notes-box" id="dialogNotesBox">
+        <strong>Recipe notes</strong>
+        <span id="dialogNotes"></span>
+      </div>
+
+      <div class="dialog-actions">
+        <button class="button secondary" id="printRecipe">Print recipe</button>
+        <button class="button" id="closeDialogBottom">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <footer>
+    <div class="page-shell">
+      My Recipe Book · Built for favourite meals and family classics.
+    </div>
+  </footer>
+
+  <script>
+    /*
+      RECIPES ARE STORED IN THE /recipes FOLDER.
+
+      To add a recipe:
+      1. Copy an existing recipe JSON file.
+      2. Rename it, for example: chicken-parma.json
+      3. Update the recipe content.
+      4. Add the filename to recipes/index.json
+
+      GitHub Pages cannot automatically scan a folder, so index.json acts
+      as the list of recipe files the website should load.
+    */
+
+    let recipes = [];
+
+    const recipeGrid = document.getElementById("recipeGrid");
+    const searchInput = document.getElementById("searchInput");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const emptyState = document.getElementById("emptyState");
+    const recipeCount = document.getElementById("recipeCount");
+    const categoryCount = document.getElementById("categoryCount");
+    const resultCount = document.getElementById("resultCount");
+
+    const recipeDialog = document.getElementById("recipeDialog");
+    const closeDialog = document.getElementById("closeDialog");
+    const closeDialogBottom = document.getElementById("closeDialogBottom");
+    const printRecipe = document.getElementById("printRecipe");
+
+    function escapeHTML(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function buildCategoryOptions() {
+      const categories = [...new Set(recipes.map(recipe => recipe.category))].sort();
+
+      categories.forEach(category => {
+        const option = document.createElement("option");
+        option.value = category;
+        option.textContent = category;
+        categoryFilter.appendChild(option);
+      });
+
+      recipeCount.textContent = recipes.length;
+      categoryCount.textContent = categories.length;
+    }
+
+    function getFilteredRecipes() {
+      const query = searchInput.value.trim().toLowerCase();
+      const selectedCategory = categoryFilter.value;
+
+      return recipes.filter(recipe => {
+        const searchableText = [
+          recipe.title,
+          recipe.category,
+          recipe.description,
+          ...recipe.tags,
+          ...recipe.ingredients
+        ].join(" ").toLowerCase();
+
+        const matchesSearch = searchableText.includes(query);
+        const matchesCategory =
+          selectedCategory === "all" || recipe.category === selectedCategory;
+
+        return matchesSearch && matchesCategory;
+      });
+    }
+
+    function renderRecipes() {
+      const filteredRecipes = getFilteredRecipes();
+      recipeGrid.innerHTML = "";
+
+      filteredRecipes.forEach(recipe => {
+        const card = document.createElement("article");
+        card.className = "recipe-card";
+
+        card.innerHTML = `
+          <div class="recipe-image-wrap">
+            <img
+              class="recipe-image"
+              src="${escapeHTML(recipe.image)}"
+              alt="${escapeHTML(recipe.title)}"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="recipe-card-body">
+            <div class="recipe-meta">
+              <span class="pill">${escapeHTML(recipe.category)}</span>
+              ${recipe.tags.slice(0, 2).map(tag => `<span class="pill">${escapeHTML(tag)}</span>`).join("")}
+            </div>
+
+            <h3>${escapeHTML(recipe.title)}</h3>
+            <p>${escapeHTML(recipe.description)}</p>
+
+            <div class="recipe-card-footer">
+              <span class="recipe-time">${escapeHTML(recipe.prepTime)} prep · ${escapeHTML(recipe.cookTime)} cook</span>
+              <button class="button" data-recipe-id="${recipe.id}">View</button>
+            </div>
+          </div>
+        `;
+
+        recipeGrid.appendChild(card);
+      });
+
+      emptyState.style.display = filteredRecipes.length ? "none" : "block";
+      resultCount.textContent =
+        `${filteredRecipes.length} ${filteredRecipes.length === 1 ? "recipe" : "recipes"}`;
+    }
+
+    function openRecipe(recipeId) {
+      const recipe = recipes.find(item => item.id === Number(recipeId));
+      if (!recipe) return;
+
+      document.getElementById("dialogImage").src = recipe.image;
+      document.getElementById("dialogImage").alt = recipe.title;
+      document.getElementById("dialogTitle").textContent = recipe.title;
+      document.getElementById("dialogDescription").textContent = recipe.description;
+      document.getElementById("dialogPrep").textContent = recipe.prepTime;
+      document.getElementById("dialogCook").textContent = recipe.cookTime;
+      document.getElementById("dialogServes").textContent = recipe.serves;
+      document.getElementById("dialogDifficulty").textContent = recipe.difficulty;
+
+      document.getElementById("dialogTags").innerHTML =
+        [recipe.category, ...recipe.tags]
+          .map(tag => `<span class="pill">${escapeHTML(tag)}</span>`)
+          .join("");
+
+      document.getElementById("dialogIngredients").innerHTML =
+        recipe.ingredients
+          .map(ingredient => `<li>${escapeHTML(ingredient)}</li>`)
+          .join("");
+
+      document.getElementById("dialogMethod").innerHTML =
+        recipe.method
+          .map(step => `<li>${escapeHTML(step)}</li>`)
+          .join("");
+
+      const notesBox = document.getElementById("dialogNotesBox");
+      document.getElementById("dialogNotes").textContent = recipe.notes || "";
+      notesBox.style.display = recipe.notes ? "block" : "none";
+
+      recipeDialog.showModal();
+    }
+
+    recipeGrid.addEventListener("click", event => {
+      const button = event.target.closest("[data-recipe-id]");
+      if (button) openRecipe(button.dataset.recipeId);
+    });
+
+    searchInput.addEventListener("input", renderRecipes);
+    categoryFilter.addEventListener("change", renderRecipes);
+
+    closeDialog.addEventListener("click", () => recipeDialog.close());
+    closeDialogBottom.addEventListener("click", () => recipeDialog.close());
+    printRecipe.addEventListener("click", () => window.print());
+
+    recipeDialog.addEventListener("click", event => {
+      const dialogBounds = recipeDialog.getBoundingClientRect();
+      const clickedOutside =
+        event.clientX < dialogBounds.left ||
+        event.clientX > dialogBounds.right ||
+        event.clientY < dialogBounds.top ||
+        event.clientY > dialogBounds.bottom;
+
+      if (clickedOutside) recipeDialog.close();
+    });
+
+    async function loadRecipes() {
+      try {
+        const manifestResponse = await fetch("./recipes/index.json");
+
+        if (!manifestResponse.ok) {
+          throw new Error(`Unable to load recipe index: ${manifestResponse.status}`);
+        }
+
+        const recipeFiles = await manifestResponse.json();
+
+        const recipeResponses = await Promise.all(
+          recipeFiles.map(async filename => {
+            const response = await fetch(`./recipes/${filename}`);
+
+            if (!response.ok) {
+              throw new Error(`Unable to load recipe file: ${filename}`);
+            }
+
+            return response.json();
+          })
+        );
+
+        recipes = recipeResponses;
+        buildCategoryOptions();
+        renderRecipes();
+      } catch (error) {
+        console.error("Recipe loading error:", error);
+
+        recipeGrid.innerHTML = `
+          <div class="empty-state" style="display:block">
+            Recipes could not be loaded. Check the files inside the recipes folder.
+          </div>
+        `;
+
+        resultCount.textContent = "Unable to load recipes";
+      }
+    }
+
+    loadRecipes();
+  </script>
+</body>
+</html>

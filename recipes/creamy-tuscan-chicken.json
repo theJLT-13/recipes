@@ -1,0 +1,35 @@
+{
+  "id": 1,
+  "title": "Creamy Tuscan Chicken",
+  "category": "Dinner",
+  "description": "Golden chicken in a creamy garlic sauce with spinach and sun-dried tomatoes.",
+  "image": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=1200&q=85",
+  "prepTime": "15 mins",
+  "cookTime": "25 mins",
+  "serves": "4",
+  "difficulty": "Easy",
+  "tags": [
+    "Chicken",
+    "One pan",
+    "High protein"
+  ],
+  "ingredients": [
+    "4 chicken breast fillets",
+    "1 tablespoon olive oil",
+    "3 cloves garlic, finely chopped",
+    "150 g sun-dried tomatoes, sliced",
+    "300 ml thickened cream",
+    "60 g grated parmesan",
+    "2 large handfuls baby spinach",
+    "Salt and black pepper"
+  ],
+  "method": [
+    "Season the chicken well with salt and black pepper.",
+    "Heat the olive oil in a large frying pan over medium-high heat. Cook the chicken until golden and cooked through, then transfer it to a plate.",
+    "Reduce the heat to medium. Add the garlic and sun-dried tomatoes and cook for one minute.",
+    "Pour in the cream and stir through the parmesan until the sauce is smooth.",
+    "Add the spinach and cook until wilted.",
+    "Return the chicken to the pan and simmer for another three to five minutes before serving."
+  ],
+  "notes": "Serve with pasta, mashed potato, rice or crusty bread."
+}
