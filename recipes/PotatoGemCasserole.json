@@ -1,0 +1,34 @@
+{
+  "id": 3,
+  "title": "Potato Gem Casserole",
+  "category": "Beef",
+  "image": "https://videocdn-sbs.akamaized.net/u/video/SBS/managed/images/2022/08/01/2057295939703_08010308_image153342_full.jpg",
+  "prepTime": "15 mins",
+  "cookTime": "55 mins",
+  "serves": "10 slices",
+  "difficulty": "Easy",
+  "tags": [
+    "Dinner",
+    "Freezer friendly"
+  ],
+  "ingredients": [
+    "3 very ripe bananas",
+    "125 g melted butter",
+    "150 g brown sugar",
+    "2 eggs",
+    "1 teaspoon vanilla extract",
+    "220 g self-raising flour",
+    "1 teaspoon ground cinnamon",
+    "Pinch of salt"
+  ],
+  "method": [
+    "Heat the oven to 175°C and line a loaf tin with baking paper.",
+    "Mash the bananas in a large bowl.",
+    "Whisk in the melted butter, brown sugar, eggs and vanilla.",
+    "Fold in the flour, cinnamon and salt until just combined.",
+    "Pour the mixture into the loaf tin and smooth the top.",
+    "Bake for 50 to 55 minutes, or until a skewer inserted into the centre comes out clean.",
+    "Cool in the tin for 10 minutes before transferring to a wire rack."
+  ],
+  "notes": "Chocolate chips or chopped walnuts can be folded through before baking."
+}
