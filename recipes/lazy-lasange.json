@@ -1,0 +1,37 @@
+{
+  "id": 5,
+  "title": "Lazy Lasange",
+  "category": "Dinner",
+  "description": "Viral Lazy Girl Lasagna, a one pot meal your family will actually eat",
+  "image": "images/lazylasagne.png",
+  "prepTime": "10",
+  "cookTime": "25",
+  "serves": "6",
+  "difficulty": "Easy",
+  "tags": [
+    "Pasta",
+    "Lazy",
+    "Dinner"
+  ],
+  "ingredients": [
+    "500g beef mince",
+    "1 onion, diced",
+    "1 carrot, grated",
+    "1 tbsp Italian Herbs",
+    "1 800g tin tomatoes",
+    "1 cup beef stock",
+    "Lasagne sheets",
+    "250g block cream cheese",
+    "Fresh mozzarella",
+    "Extra Italian Herbs"
+  ],
+  "method": [
+    "Brown the mince, onion and carrot until softened.",
+    "Stir through the Italian Herbs, then add the tinned tomatoes and beef stock.",
+    "Break the lasagna sheets into pieces and stir them into the sauce.",
+    "Cover and simmer until the pasta is almost tender.",
+    "Add chunks of cream cheese and stir until melted and creamy.",
+    "Top with fresh mozzarella and a sprinkle of extra Italian Herbs, then grill until golden and bubbly."
+  ],
+  "notes": ""
+}
