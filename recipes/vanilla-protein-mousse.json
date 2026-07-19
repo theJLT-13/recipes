@@ -1,0 +1,32 @@
+{
+  "id": 6,
+  "title": "Vanilla Protein Mousse",
+  "category": "Breakfast",
+  "description": "High protein breakfast option thats quick to prepare and delicious!",
+  "image": "https://www.lindsaypleskot.com/wp-content/uploads/2026/01/High-protein-chia-pudding-1024x1536.jpg",
+  "prepTime": "10",
+  "cookTime": "0",
+  "serves": "3",
+  "difficulty": "Easy",
+  "tags": [
+    "Breakfast",
+    "High Protein"
+  ],
+  "ingredients": [
+    "80g natural cashews",
+    "450g high protein greek yoghurt",
+    "1 tbsp honey",
+    "60g chia seeds",
+    "2 tsp vanilla extract",
+    "80ml skim milk",
+    "1 scoop (30-35g) protein powder",
+    "Optional Toppings (Mixed berries, dark chocolate, granola)"
+  ],
+  "method": [
+    "Blend the cashews until they are a rough powder.",
+    "Add the rest of the ingredients and blend until smooth and creamy.",
+    "Pour evenly into 3 serving pots or jars.",
+    "Refrigerate for 2 to 3 hours (or overnight if you can wait that long)."
+  ],
+  "notes": "Refrigerate for up to 5 days."
+}
