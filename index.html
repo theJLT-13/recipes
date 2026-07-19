@@ -945,12 +945,27 @@
     }
 
 
-    function formatMacro(value, suffix = "") {
-      if (value === undefined || value === null || value === "") {
-        return "—";
-      }
+    function hasContent(value) {
+      return value !== undefined &&
+        value !== null &&
+        String(value).trim() !== "";
+    }
 
-      return `${escapeHTML(value)}${suffix}`;
+    function hasMacroValue(value) {
+      return hasContent(value);
+    }
+
+    function hasMacroValues(macros) {
+      return Boolean(
+        macros &&
+        Object.values(macros).some(value => hasMacroValue(value))
+      );
+    }
+
+    function formatMacro(value, suffix = "") {
+      return hasMacroValue(value)
+        ? `${escapeHTML(value)}${suffix}`
+        : "";
     }
 
     function buildCategoryOptions() {
@@ -1017,27 +1032,54 @@
             </div>
 
             <h3>${escapeHTML(recipe.title)}</h3>
-            <p>${escapeHTML(recipe.description)}</p>
+            ${hasContent(recipe.description)
+              ? `<p>${escapeHTML(recipe.description)}</p>`
+              : ""
+            }
 
-
-            <div class="recipe-macros">
-              <div class="macro ${recipe.macros?.calories ? "" : "missing"}">
-                <strong>${formatMacro(recipe.macros?.calories)}</strong>
-                <span>Calories</span>
-              </div>
-              <div class="macro ${recipe.macros?.protein ? "" : "missing"}">
-                <strong>${formatMacro(recipe.macros?.protein, "g")}</strong>
-                <span>Protein</span>
-              </div>
-              <div class="macro ${recipe.macros?.carbs ? "" : "missing"}">
-                <strong>${formatMacro(recipe.macros?.carbs, "g")}</strong>
-                <span>Carbs</span>
-              </div>
-              <div class="macro ${recipe.macros?.fat ? "" : "missing"}">
-                <strong>${formatMacro(recipe.macros?.fat, "g")}</strong>
-                <span>Fat</span>
-              </div>
-            </div>
+            ${hasMacroValues(recipe.macros)
+              ? `
+                <div class="recipe-macros">
+                  ${hasMacroValue(recipe.macros?.calories)
+                    ? `
+                      <div class="macro">
+                        <strong>${formatMacro(recipe.macros.calories)}</strong>
+                        <span>Calories</span>
+                      </div>
+                    `
+                    : ""
+                  }
+                  ${hasMacroValue(recipe.macros?.protein)
+                    ? `
+                      <div class="macro">
+                        <strong>${formatMacro(recipe.macros.protein, "g")}</strong>
+                        <span>Protein</span>
+                      </div>
+                    `
+                    : ""
+                  }
+                  ${hasMacroValue(recipe.macros?.carbs)
+                    ? `
+                      <div class="macro">
+                        <strong>${formatMacro(recipe.macros.carbs, "g")}</strong>
+                        <span>Carbs</span>
+                      </div>
+                    `
+                    : ""
+                  }
+                  ${hasMacroValue(recipe.macros?.fat)
+                    ? `
+                      <div class="macro">
+                        <strong>${formatMacro(recipe.macros.fat, "g")}</strong>
+                        <span>Fat</span>
+                      </div>
+                    `
+                    : ""
+                  }
+                </div>
+              `
+              : ""
+            }
 
             <div class="recipe-card-footer">
               <span class="recipe-time">${escapeHTML(recipe.prepTime)} prep · ${escapeHTML(recipe.cookTime)} cook</span>
@@ -1061,26 +1103,54 @@
       document.getElementById("dialogImage").src = recipe.image;
       document.getElementById("dialogImage").alt = recipe.title;
       document.getElementById("dialogTitle").textContent = recipe.title;
-      document.getElementById("dialogDescription").textContent = recipe.description;
+      const dialogDescription = document.getElementById("dialogDescription");
+      dialogDescription.textContent = recipe.description || "";
+      dialogDescription.style.display =
+        hasContent(recipe.description) ? "block" : "none";
+
       document.getElementById("dialogPrep").textContent = recipe.prepTime;
       document.getElementById("dialogCook").textContent = recipe.cookTime;
       document.getElementById("dialogServes").textContent = recipe.serves;
       document.getElementById("dialogDifficulty").textContent = recipe.difficulty;
 
-      document.getElementById("dialogCalories").textContent =
-        recipe.macros?.calories ?? "—";
-      document.getElementById("dialogProtein").textContent =
-        recipe.macros?.protein !== undefined && recipe.macros?.protein !== null
-          ? `${recipe.macros.protein}g`
-          : "—";
-      document.getElementById("dialogCarbs").textContent =
-        recipe.macros?.carbs !== undefined && recipe.macros?.carbs !== null
-          ? `${recipe.macros.carbs}g`
-          : "—";
-      document.getElementById("dialogFat").textContent =
-        recipe.macros?.fat !== undefined && recipe.macros?.fat !== null
-          ? `${recipe.macros.fat}g`
-          : "—";
+      const dialogMacros = document.getElementById("dialogMacros");
+      const macroItems = [
+        {
+          element: document.getElementById("dialogCalories").closest(".dialog-macro"),
+          valueElement: document.getElementById("dialogCalories"),
+          value: recipe.macros?.calories,
+          suffix: ""
+        },
+        {
+          element: document.getElementById("dialogProtein").closest(".dialog-macro"),
+          valueElement: document.getElementById("dialogProtein"),
+          value: recipe.macros?.protein,
+          suffix: "g"
+        },
+        {
+          element: document.getElementById("dialogCarbs").closest(".dialog-macro"),
+          valueElement: document.getElementById("dialogCarbs"),
+          value: recipe.macros?.carbs,
+          suffix: "g"
+        },
+        {
+          element: document.getElementById("dialogFat").closest(".dialog-macro"),
+          valueElement: document.getElementById("dialogFat"),
+          value: recipe.macros?.fat,
+          suffix: "g"
+        }
+      ];
+
+      dialogMacros.style.display =
+        hasMacroValues(recipe.macros) ? "grid" : "none";
+
+      macroItems.forEach(item => {
+        const visible = hasMacroValue(item.value);
+        item.element.style.display = visible ? "block" : "none";
+        item.valueElement.textContent = visible
+          ? `${item.value}${item.suffix}`
+          : "";
+      });
 
 
       document.getElementById("dialogTags").innerHTML =
@@ -1100,7 +1170,7 @@
 
       const notesBox = document.getElementById("dialogNotesBox");
       document.getElementById("dialogNotes").textContent = recipe.notes || "";
-      notesBox.style.display = recipe.notes ? "block" : "none";
+      notesBox.style.display = hasContent(recipe.notes) ? "block" : "none";
 
       disableCookingMode();
       recipeDialog.showModal();
