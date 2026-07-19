@@ -35,5 +35,11 @@
 "Mix together the cream cheese and sugar. You can microwave it for a bit to help it soften. Put a few spoonfuls of the cream cheese around your pan and swirl it around as best as you can. ",
 "Bake for 35-40 minutes."
   ],
-  "notes": "Refrigerate for 4-5 days or freeze for up to 2 months."
+  "notes": "Refrigerate for 4-5 days or freeze for up to 2 months.",
+	"macros": {
+  "calories": 350,
+  "protein": 19.2,
+  "carbs": 47.3,
+  "fat": 9.2
+}
 }
