@@ -30,9 +30,9 @@
   ],
   "notes": "Refrigerate for up to 5 days.",
   "macros": {
-    "calories": "380",
-    "protein": "30g",
-    "carbs": "28g",
-    "fat": "14g"
+    "calories": 380,
+    "protein": 19.2,
+    "carbs": 28,
+    "fat": 14g
   }
 }
