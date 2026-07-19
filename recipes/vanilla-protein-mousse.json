@@ -28,5 +28,11 @@
     "Pour evenly into 3 serving pots or jars.",
     "Refrigerate for 2 to 3 hours (or overnight if you can wait that long)."
   ],
-  "notes": "Refrigerate for up to 5 days."
+  "notes": "Refrigerate for up to 5 days.",
+  "macros": {
+    "calories": "380",
+    "protein": "30g",
+    "carbs": "28g",
+    "fat": "14g"
+  },
 }
