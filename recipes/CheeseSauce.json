@@ -1,0 +1,26 @@
+{
+  "id": 4,
+  "title": "Cheese Sauce",
+  "category": "Sauces",
+  "description": "Easy to make cheese sauce for Lasagnes and more.",
+  "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/cheese-sauce-678e383.jpg",
+  "prepTime": "5 mins",
+  "cookTime": "10 mins",
+  "serves": "6",
+  "difficulty": "Easy",
+  "tags": [
+  ],
+  "ingredients": [
+	  "1 tbsp cornflour",
+	  "50g butter",
+	  "2 cups milk",
+	  "1 cup cheese"
+  ],
+  "method": [
+	  "Cook cornflour in butter on medium heat for approx. 1 minute.",
+	  "Add all milk, then whisk to remove any lumps",
+	  "Add cheese once sauce has thickened then whisk until smooth",
+	  "Add salt and pepper to taste"
+  ],
+  "notes": "Very easy to burn, cook slowly with patience"
+}
