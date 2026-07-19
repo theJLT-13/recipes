@@ -92,17 +92,17 @@
     }
 
     .brand-mark {
-		width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: transparent;
-  color: white;
-  display: grid;
-  place-items: center;
-  font-size: 1.25rem;
-  overflow: hidden;
-  box-shadow: none;
-}
+      width: 46px;
+  	  height: 46px;
+ 	  border-radius: 50%;
+	  background: transparent;
+ 	  color: white;
+ 	  display: grid;
+	  place-items: center;
+	  font-size: 1.25rem;
+	  overflow: hidden;
+	  box-shadow: none;
+    }
 
     .brand-mark img {
       width: 100%;
@@ -128,10 +128,10 @@
     }
 
     .hero {
-      padding: 72px 0 48px;
+      padding: 34px 0 34px;
       display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      gap: 34px;
+      grid-template-columns: minmax(0, 1.5fr) minmax(300px, 0.5fr);
+      gap: 20px;
       align-items: stretch;
     }
 
@@ -141,7 +141,7 @@
     }
 
     .hero-copy {
-      padding: clamp(34px, 6vw, 70px);
+      padding: clamp(28px, 4vw, 46px);
       background:
         radial-gradient(circle at top right, rgba(255,255,255,.28), transparent 34%),
         linear-gradient(135deg, #16836f, #1c6480);
@@ -162,20 +162,20 @@
       margin: 0;
       max-width: 770px;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2.7rem, 7vw, 5.8rem);
-      line-height: 0.98;
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      line-height: 0.96;
       letter-spacing: -0.055em;
     }
 
     .hero-copy p {
       max-width: 620px;
-      margin: 22px 0 0;
-      font-size: 1.08rem;
+      margin: 16px 0 0;
+      font-size: 1rem;
       opacity: 0.9;
     }
 
     .hero-card {
-      padding: 32px;
+      padding: 24px;
       background: var(--surface);
       border: 1px solid var(--border);
       display: flex;
@@ -187,7 +187,7 @@
     .hero-card h2 {
       margin: 0 0 10px;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 2rem;
+      font-size: 1.65rem;
       line-height: 1.1;
     }
 
@@ -200,18 +200,18 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
-      margin-top: 30px;
+      margin-top: 20px;
     }
 
     .stat {
       background: var(--surface-alt);
       border-radius: var(--radius-md);
-      padding: 18px;
+      padding: 14px;
     }
 
     .stat strong {
       display: block;
-      font-size: 1.7rem;
+      font-size: 1.45rem;
       line-height: 1;
     }
 
@@ -337,6 +337,42 @@
     .recipe-card p {
       margin: 12px 0 18px;
       color: var(--muted);
+    }
+
+
+    .recipe-macros {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 7px;
+      margin: 16px 0 18px;
+    }
+
+    .macro {
+      padding: 9px 7px;
+      border-radius: 12px;
+      background: var(--surface-alt);
+      text-align: center;
+    }
+
+    .macro strong {
+      display: block;
+      font-size: 0.92rem;
+      line-height: 1.1;
+      color: var(--text);
+    }
+
+    .macro span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .macro.missing {
+      opacity: 0.55;
     }
 
     .recipe-card-footer {
@@ -473,6 +509,35 @@
       font-size: 1rem;
     }
 
+
+    .dialog-macros {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: -18px 0 36px;
+    }
+
+    .dialog-macro {
+      padding: 14px;
+      border-radius: var(--radius-md);
+      background: #e6f1f8;
+    }
+
+    .dialog-macro span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .dialog-macro strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 1rem;
+    }
+
     .recipe-columns {
       display: grid;
       grid-template-columns: 0.78fr 1.22fr;
@@ -592,13 +657,7 @@
     }
 
     @media (max-width: 640px) {
-      .brand-mark img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .header-nav {
+      .header-nav {
         display: none;
       }
 
@@ -610,6 +669,11 @@
       .recipe-grid,
       .dialog-facts {
         grid-template-columns: 1fr;
+      }
+
+      .recipe-macros,
+      .dialog-macros {
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .section-heading {
@@ -764,6 +828,26 @@
         </div>
       </div>
 
+
+      <div class="dialog-macros" id="dialogMacros">
+        <div class="dialog-macro">
+          <span>Calories</span>
+          <strong id="dialogCalories">—</strong>
+        </div>
+        <div class="dialog-macro">
+          <span>Protein</span>
+          <strong id="dialogProtein">—</strong>
+        </div>
+        <div class="dialog-macro">
+          <span>Carbs</span>
+          <strong id="dialogCarbs">—</strong>
+        </div>
+        <div class="dialog-macro">
+          <span>Fat</span>
+          <strong id="dialogFat">—</strong>
+        </div>
+      </div>
+
       <div class="recipe-columns">
         <section>
           <h3>Ingredients</h3>
@@ -819,6 +903,13 @@
       2. Rename it, for example: chicken-parma.json
       3. Update the recipe content.
       4. Add the filename to recipes/index.json
+      5. Optional macros format:
+         "macros": {
+           "calories": 520,
+           "protein": 42,
+           "carbs": 36,
+           "fat": 21
+         }
 
       GitHub Pages cannot automatically scan a folder, so index.json acts
       as the list of recipe files the website should load.
@@ -853,6 +944,15 @@
         .replaceAll("'", "&#039;");
     }
 
+
+    function formatMacro(value, suffix = "") {
+      if (value === undefined || value === null || value === "") {
+        return "—";
+      }
+
+      return `${escapeHTML(value)}${suffix}`;
+    }
+
     function buildCategoryOptions() {
       const categories = [...new Set(recipes.map(recipe => recipe.category))].sort();
 
@@ -876,8 +976,12 @@
           recipe.title,
           recipe.category,
           recipe.description,
-          ...recipe.tags,
-          ...recipe.ingredients
+          ...(recipe.tags || []),
+          ...(recipe.ingredients || []),
+          recipe.macros?.calories,
+          recipe.macros?.protein,
+          recipe.macros?.carbs,
+          recipe.macros?.fat
         ].join(" ").toLowerCase();
 
         const matchesSearch = searchableText.includes(query);
@@ -909,11 +1013,31 @@
           <div class="recipe-card-body">
             <div class="recipe-meta">
               <span class="pill">${escapeHTML(recipe.category)}</span>
-              ${recipe.tags.slice(0, 2).map(tag => `<span class="pill">${escapeHTML(tag)}</span>`).join("")}
+              ${(recipe.tags || []).slice(0, 2).map(tag => `<span class="pill">${escapeHTML(tag)}</span>`).join("")}
             </div>
 
             <h3>${escapeHTML(recipe.title)}</h3>
             <p>${escapeHTML(recipe.description)}</p>
+
+
+            <div class="recipe-macros">
+              <div class="macro ${recipe.macros?.calories ? "" : "missing"}">
+                <strong>${formatMacro(recipe.macros?.calories)}</strong>
+                <span>Calories</span>
+              </div>
+              <div class="macro ${recipe.macros?.protein ? "" : "missing"}">
+                <strong>${formatMacro(recipe.macros?.protein, "g")}</strong>
+                <span>Protein</span>
+              </div>
+              <div class="macro ${recipe.macros?.carbs ? "" : "missing"}">
+                <strong>${formatMacro(recipe.macros?.carbs, "g")}</strong>
+                <span>Carbs</span>
+              </div>
+              <div class="macro ${recipe.macros?.fat ? "" : "missing"}">
+                <strong>${formatMacro(recipe.macros?.fat, "g")}</strong>
+                <span>Fat</span>
+              </div>
+            </div>
 
             <div class="recipe-card-footer">
               <span class="recipe-time">${escapeHTML(recipe.prepTime)} prep · ${escapeHTML(recipe.cookTime)} cook</span>
@@ -943,8 +1067,24 @@
       document.getElementById("dialogServes").textContent = recipe.serves;
       document.getElementById("dialogDifficulty").textContent = recipe.difficulty;
 
+      document.getElementById("dialogCalories").textContent =
+        recipe.macros?.calories ?? "—";
+      document.getElementById("dialogProtein").textContent =
+        recipe.macros?.protein !== undefined && recipe.macros?.protein !== null
+          ? `${recipe.macros.protein}g`
+          : "—";
+      document.getElementById("dialogCarbs").textContent =
+        recipe.macros?.carbs !== undefined && recipe.macros?.carbs !== null
+          ? `${recipe.macros.carbs}g`
+          : "—";
+      document.getElementById("dialogFat").textContent =
+        recipe.macros?.fat !== undefined && recipe.macros?.fat !== null
+          ? `${recipe.macros.fat}g`
+          : "—";
+
+
       document.getElementById("dialogTags").innerHTML =
-        [recipe.category, ...recipe.tags]
+        [recipe.category, ...(recipe.tags || [])]
           .map(tag => `<span class="pill">${escapeHTML(tag)}</span>`)
           .join("");
 
