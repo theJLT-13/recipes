@@ -4,8 +4,8 @@
   "category": "Breakfast",
   "description": "High protein breakfast option thats quick to prepare and delicious!",
   "image": "https://www.lindsaypleskot.com/wp-content/uploads/2026/01/High-protein-chia-pudding-1024x1536.jpg",
-  "prepTime": "10",
-  "cookTime": "0",
+  "prepTime": "5 mins",
+  "cookTime": "5 mins",
   "serves": "3",
   "difficulty": "Easy",
   "tags": [
