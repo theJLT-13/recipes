@@ -1,0 +1,38 @@
+{
+  "id": 7,
+  "title": "Bounty Overnight Weetbix",
+  "category": "Breakfast",
+  "description": "9/10 – a Bounty for breakfast for under 500 calories.. win!\nhttps://www.facebook.com/reel/2187967822142124",
+  "image": "images/bountyweetbix",
+  "prepTime": "10 mins",
+  "cookTime": "4 hours",
+  "serves": "1",
+  "difficulty": "Very Easy",
+  "macros": {
+    "calories": 490,
+    "protein": 31,
+    "carbs": 58,
+    "fat": 13
+  },
+  "tags": [
+    "Overnight",
+    "High Protein"
+  ],
+  "ingredients": [
+    "2 Weetabix",
+    "50ml - milk of choice",
+    "200g coconut protein yoghurt",
+    "10g desiccated coconut",
+    "10g dark chocolate",
+    "25g fat-free Greek yoghurt",
+    "Half banana, sliced (optional)"
+  ],
+  "method": [
+    "Crush 2 Weetbix into a container and pour over your choice of milk and mix until fully combined. Press everything down firmly to create the base.",
+    "Add 200g of coconut protein yoghurt and sprinkle over 10g of desiccated coconut.",
+    "Melt 10g of dark chocolate, then mix it with 25g of fat-free Greek yoghurt",
+    "Spread the chocolate mixture evenly over the coconut layer.",
+    "Top with half a sliced banana, if using, then pop the lid on and refrigerate overnight—or for at least 4 hours."
+  ],
+  "notes": "Refrigerate for up to 4 days"
+}
